@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расчет площади круга</title>
+</head>
+<body>
+    <h1>Программа для расчета площади круга</h1>
+
+    <form method="POST">
+        <label for="radius">Введите радиус круга:</label>
+        <input type="text" id="radius" name="radius">
+        <button type="submit">Рассчитать</button>
+    </form>
+    {% if area %}
+        <p>{{ area }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,20 +1,24 @@
-import math
+import random
 
-def calculate_circle_area(radius):
-    """Функция для расчета площади круга"""
-    return math.pi * radius ** 2
+
+def generate_random_number(start, end):
+    """Функция для генерации случайного числа"""
+    return random.randint(start, end)
+
 
 def main():
-    print("Добро пожаловать в программу для расчета площади круга!")
     try:
-        radius = float(input("Введите радиус круга: "))
-        if radius < 0:
-            print("Радиус не может быть отрицательным!")
+        start = int(input("Введите начальное значение диапазона: "))
+        end = int(input("Введите конечное значение диапазона: "))
+
+        if start >= end:
+            print("Начальное число должно быть меньше конечного!")
         else:
-            area = calculate_circle_area(radius)
-            print(f"Площадь круга с радиусом {radius} равна: {area:.2f}")
+            random_number = generate_random_number(start, end)
+            print(f"Случайное число между {start} и {end}: {random_number}")
     except ValueError:
-        print("Пожалуйста, введите числовое значение для радиуса.")
+        print("Пожалуйста, введите числовые значения для диапазона.")
+
 
 if __name__ == "__main__":
     main()

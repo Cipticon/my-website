@@ -4,22 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Генерация случайного числа</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 10px 15px;
+        }
+    </style>
 </head>
 <body>
     <h1>Программа для генерации случайного числа</h1>
 
     <form method="POST">
         <label for="start">Введите начальное значение диапазона:</label>
-        <input type="text" id="start" name="start" required>
+        <input type="text" id="start" name="start" value="{{ start }}" required>
         <br>
         <label for="end">Введите конечное значение диапазона:</label>
-        <input type="text" id="end" name="end" required>
+        <input type="text" id="end" name="end" value="{{ end }}" required>
         <br>
         <button type="submit">Сгенерировать</button>
     </form>
 
     {% if random_number is not none %}
-        <p>Случайное число между {{ request.form["start"] }} и {{ request.form["end"] }}: {{ random_number }}</p>
+        <p>
+            {% if random_number is string %}
+                Ошибка: {{ random_number }}
+            {% else %}
+                Случайное число между {{ start }} и {{ end }}: {{ random_number }}
+            {% endif %}
+        </p>
     {% endif %}
 </body>
 </html>

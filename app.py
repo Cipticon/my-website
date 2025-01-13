@@ -1,29 +1,27 @@
+import random
 from flask import Flask, render_template, request
-import math
 
 app = Flask(__name__)
 
-
-def calculate_circle_area(radius):
-    """Функция для расчета площади круга"""
-    return math.pi * radius ** 2
-
+def generate_random_number(start, end):
+    """Функция для генерации случайного числа"""
+    return random.randint(start, end)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    area = None
+    random_number = None
     if request.method == "POST":
         try:
-            radius = float(request.form["radius"])
-            if radius < 0:
-                area = "Радиус не может быть отрицательным!"
+            start = int(request.form["start"])
+            end = int(request.form["end"])
+            if start >= end:
+                random_number = "Начальное число должно быть меньше конечного!"
             else:
-                area = f"Площадь круга с радиусом {radius} равна: {calculate_circle_area(radius):.2f}"
+                random_number = generate_random_number(start, end)
         except ValueError:
-            area = "Пожалуйста, введите числовое значение для радиуса."
+            random_number = "Пожалуйста, введите числовые значения для диапазона."
 
-    return render_template("index.html", area=area)
-
+    return render_template("index.html", random_number=random_number)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)

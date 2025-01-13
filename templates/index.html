@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Расчет площади круга</title>
+    <title>Генерация случайного числа</title>
 </head>
 <body>
-    <h1>Программа для расчета площади круга</h1>
+    <h1>Программа для генерации случайного числа</h1>
 
     <form method="POST">
-        <label for="radius">Введите радиус круга:</label>
-        <input type="text" id="radius" name="radius">
-        <button type="submit">Рассчитать</button>
+        <label for="start">Введите начальное значение диапазона:</label>
+        <input type="text" id="start" name="start" required>
+        <br>
+        <label for="end">Введите конечное значение диапазона:</label>
+        <input type="text" id="end" name="end" required>
+        <br>
+        <button type="submit">Сгенерировать</button>
     </form>
-    {% if area %}
-        <p>{{ area }}</p>
+
+    {% if random_number is not none %}
+        <p>Случайное число между {{ request.form["start"] }} и {{ request.form["end"] }}: {{ random_number }}</p>
     {% endif %}
 </body>
 </html>
